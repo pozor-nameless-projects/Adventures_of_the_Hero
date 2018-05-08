@@ -29,16 +29,27 @@ trader = hero('Trader', 24, 'Торгует всем что есть в это �
 villager = hero('Villager', random.randint(20, 40), 'Простой житель. Ничего не умеет. Ничего не делает.', 0, 0)
 old_villager = hero('Old villager', random.randint(50, 85), 'Старый житель. Живет в избушке на пенсии', 0, 0)
 young_villager = hero('Young villager', randint(10, 18), 'Молодой житель. Еще учится в школе.'0, 0)
-
+ 
 # h = people(user, age, 'Ваш перссонаж бродит по темным уголкам этого средневекового века. Он ищет не только приключения, но и семь тоинственных душ')
 
 
 def menu():
 	menu = Tk()
-	
+
 	menu.title('Adventures of the Hero')
 	menu.geometry('450x450')
+	menu.config(bg = '#1FA7E1')
+
+	label = Label(menu, text = 'Menu', bg='#1FA7E1', fg='white')
+	label.config(font = ('Arial', 25, 'bold'))
+	label.place(x=180, y=30)
+	
+	button = Button(menu, text = 'START', width=15)
+	button.config(font = ('Arial', 15, 'bold'))
+	button.place(x=130, y=100)
+
 	menu.mainloop()
+
 
 if __name__ == '__main__':
 	menu()
