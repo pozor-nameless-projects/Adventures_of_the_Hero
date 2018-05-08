@@ -1,11 +1,21 @@
 
 from ezprint import p
 from tkinter import *
+import threading
 import random
+import time
 import os
+
 
 user = ''
 age = ''
+
+
+screen_saver_thread = None
+
+
+def cls():
+	os.system('cls')
 
 
 class item:
@@ -27,6 +37,14 @@ class hero:
 		self.den = den
 
 
+def printkrasivo(s):
+	strtoprint = ''
+	for i in s:
+		strtoprint = strtoprint + str(i)
+		sys.stdout.write('\r\r' + (strtoprint) + '')
+		time.sleep(0.01)
+
+
 #heroes
 gnom = hero('Гном', 120, 'Гномы обитают в подземелье. Они не опасны, пока их не разозлить', 5, 0)
 dragon = hero('Дракон', 562, 'Дракон очень сверепое существо. Остерегайтесь его в замке', 14, 1)
@@ -43,7 +61,6 @@ small_sword = item('Маленький меч', 'Простой меч. Нано
 
 # h = people(user, age, 'Ваш перссонаж бродит по темным уголкам этого средневекового века. Он ищет не только приключения, но и семь тоинственных душ')
 class windows:
-
 	global user
 	global age
 	menu = None
@@ -87,7 +104,7 @@ class windows:
 
 		def con():
 			set_user_data(entry, entry1)
-			self.game()
+			game_windows.game()
 
 		menu.destroy()
 		create_person = Tk()
@@ -118,7 +135,10 @@ class windows:
 		button.place(x=130, y=190)
 
 		create_person.mainloop()
-
+		try:
+			screen_saver_thread.join()
+		except:
+			pass
 
 	def inv(self):
 		global inv
@@ -140,8 +160,49 @@ def set_user_data(entry1, entry2):
 	age = entry2.get()
 
 
+def screen_saver():
+	strs = []
+	strs.append(' ▄▄▄      ▓█████▄  ██▒   █▓▓█████  ███▄    █ ▄▄▄█████▓ █    ██  ██▀███  ▓█████   ██████ ') 
+	strs.append('▒████▄    ▒██▀ ██▌▓██░   █▒▓█   ▀  ██ ▀█   █ ▓  ██▒ ▓▒ ██  ▓██▒▓██ ▒ ██▒▓█   ▀ ▒██    ▒ ') 
+	strs.append('▒██  ▀█▄  ░██   █▌ ▓██  █▒░▒███   ▓██  ▀█ ██▒▒ ▓██░ ▒░▓██  ▒██░▓██ ░▄█ ▒▒███   ░ ▓██▄   ') 
+	strs.append('░██▄▄▄▄██ ░▓█▄   ▌  ▒██ █░░▒▓█  ▄ ▓██▒  ▐▌██▒░ ▓██▓ ░ ▓▓█  ░██░▒██▀▀█▄  ▒▓█  ▄   ▒   ██▒') 
+	strs.append(' ▓█   ▓██▒░▒████▓    ▒▀█░  ░▒████▒▒██░   ▓██░  ▒██▒ ░ ▒▒█████▓ ░██▓ ▒██▒░▒████▒▒██████▒▒') 
+	strs.append(' ▒▒   ▓▒█░ ▒▒▓  ▒    ░ ▐░  ░░ ▒░ ░░ ▒░   ▒ ▒   ▒ ░░   ░▒▓▒ ▒ ▒ ░ ▒▓ ░▒▓░░░ ▒░ ░▒ ▒▓▒ ▒ ░') 
+	strs.append('  ▒   ▒▒ ░ ░ ▒  ▒    ░ ░░   ░ ░  ░░ ░░   ░ ▒░    ░    ░░▒░ ░ ░   ░▒ ░ ▒░ ░ ░  ░░ ░▒  ░ ░') 
+	strs.append('  ░   ▒    ░ ░  ░      ░░     ░      ░   ░ ░   ░       ░░░ ░ ░   ░░   ░    ░   ░  ░  ░  ') 
+	strs.append('      ░  ░   ░          ░     ░  ░         ░             ░        ░        ░  ░      ░  ') 
+	strs.append('           ░           ░                                                                ') 
+	strs.append(' ▒█████    █████▒')
+	strs.append('▒██▒  ██▒▓██   ▒ ')
+	strs.append('▒██░  ██▒▒████ ░ ')
+	strs.append('▒██   ██░░▓█▒  ░ ')
+	strs.append('░ ████▓▒░░▒█░    ')
+	strs.append('░ ▒░▒░▒░  ▒ ░    ')
+	strs.append('  ░ ▒ ▒░  ░      ')
+	strs.append('░ ░ ░ ▒   ░ ░    ')
+	strs.append('    ░ ░          ')
+	strs.append('▄▄▄█████▓ ██░ ██ ▓█████     ██░ ██ ▓█████  ██▀███   ▒█████  ')
+	strs.append('▓  ██▒ ▓▒▓██░ ██▒▓█   ▀    ▓██░ ██▒▓█   ▀ ▓██ ▒ ██▒▒██▒  ██▒')
+	strs.append('▒ ▓██░ ▒░▒██▀▀██░▒███      ▒██▀▀██░▒███   ▓██ ░▄█ ▒▒██░  ██▒')
+	strs.append('░ ▓██▓ ░ ░▓█ ░██ ▒▓█  ▄    ░▓█ ░██ ▒▓█  ▄ ▒██▀▀█▄  ▒██   ██░')
+	strs.append('  ▒██▒ ░ ░▓█▒░██▓░▒████▒   ░▓█▒░██▓░▒████▒░██▓ ▒██▒░ ████▓▒░')
+	strs.append('  ▒ ░░    ▒ ░░▒░▒░░ ▒░ ░    ▒ ░░▒░▒░░ ▒░ ░░ ▒▓ ░▒▓░░ ▒░▒░▒░ ')
+	strs.append('    ░     ▒ ░▒░ ░ ░ ░  ░    ▒ ░▒░ ░ ░ ░  ░  ░▒ ░ ▒░  ░ ▒ ▒░ ')
+	strs.append('  ░       ░  ░░ ░   ░       ░  ░░ ░   ░     ░░   ░ ░ ░ ░ ▒  ')
+	strs.append('          ░  ░  ░   ░  ░    ░  ░  ░   ░  ░   ░         ░ ░  ')
+
+	for i in strs:
+		printkrasivo(i + '\n')
+                                                                                 
+
+def game():
+	pass
+
 
 if __name__ == '__main__':
+	cls()
+	screen_saver_thread = threading.Thread(target = screen_saver)
+	screen_saver_thread.start()
 	game_windows = windows()
 	game_windows.menu()
 
