@@ -4,8 +4,8 @@ from tkinter import *
 import random
 import os
 
-user = 'Jana'
-age = 0
+user = ''
+age = ''
 
 
 class item:
@@ -42,85 +42,106 @@ small_sword = item('Маленький меч', 'Простой меч. Нано
 
 
 # h = people(user, age, 'Ваш перссонаж бродит по темным уголкам этого средневекового века. Он ищет не только приключения, но и семь тоинственных душ')
+class windows:
 
-menu = None
-create_person = None
-
-
-def menu():
-	global menu
-	menu = Tk()
-
-	menu.title('Adventures of the Hero')
-	menu.geometry('450x450')
-	menu.config(bg = '#1FA7E1')
-	menu.resizable(0, 0)
-
-	label = Label(menu, text = 'Menu', bg='#1FA7E1', fg='white')
-	label.config(font = ('Arial', 25, 'bold'))
-	label.place(x=180, y=30)
-	
-	button = Button(menu, text = 'START', width=15, command=create_person)
-	button.config(font = ('Arial', 15, 'bold'))
-	button.place(x=130, y=100)
-
-	button = Button(menu, text = 'SETTINGS', width=15)
-	button.config(font = ('Arial', 15, 'bold'))
-	button.place(x=130, y=170)
-
-	button = Button(menu, text = 'EXIT', width=15, command=menu.destroy)
-	button.config(font = ('Arial', 15, 'bold'))
-	button.place(x=130, y=240)
-
-	menu.mainloop()
-	
- 
-def create_person():
-	global create_person
-	menu.destroy()
-	create_person = Tk()
-	create_person.resizable(0, 0)
-
-	create_person.title('Adventures of the Hero')
-	create_person.geometry('450x450')
-	create_person.config(bg = '#1FA7E1')
-
-	label = Label(create_person, text = 'Input name: ', bg='#1FA7E1', fg='white')
-	label.config(font = ('Arial', 20, 'bold'))
-	label.place(x=130, y=30)
-
-	entry = Entry(create_person, width = 20)
-	entry.config(font = ('Arial', 15, 'bold'))
-	entry.place(x=130, y=70)
-
-	label = Label(create_person, text = 'Input Age: ', bg='#1FA7E1', fg='white')
-	label.config(font = ('Arial', 20, 'bold'))
-	label.place(x=130, y=110)
-
-	entry = Entry(create_person, width = 20)
-	entry.config(font = ('Arial', 15, 'bold'))
-	entry.place(x=130, y=150)
-
-	button = Button(create_person, text = 'Create person', width=15, command=game)
-	button.config(font = ('Arial', 15, 'bold'))
-	button.place(x=130, y=190)
-
-	create_person.mainloop()
+	global user
+	global age
+	menu = None
+	create_person = None
 
 
-def game():
-	global game
-	create_person.destroy()
-	game = Tk()
+	def menu(self):
+		global menu
+		menu = Tk()
 
-	game.title('Adventures of the Hero')
-	game.geometry('450x450')
-	game.config(bg = '#1FA7E1')
-	game.resizable(0, 0)
+		menu.title('Adventures of the Hero')
+		menu.geometry('450x450')
+		menu.config(bg = '#1FA7E1')
+		menu.resizable(0, 0)
 
-	game.mainloop()
+		label = Label(menu, text = 'Menu', bg='#1FA7E1', fg='white')
+		label.config(font = ('Arial', 25, 'bold'))
+		label.place(x=180, y=30)
+		
+		button = Button(menu, text = 'START', width=15, command=self.create_person)
+		button.config(font = ('Arial', 15, 'bold'))
+		button.place(x=130, y=100)
+
+		button = Button(menu, text = 'CONTINUE', width=15, command=self.create_person)
+		button.config(font = ('Arial', 15, 'bold'))
+		button.place(x=130, y=170)
+
+		button = Button(menu, text = 'SETTINGS', width=15)
+		button.config(font = ('Arial', 15, 'bold'))
+		button.place(x=130, y=240)
+
+		button = Button(menu, text = 'EXIT', width=15, command=menu.destroy)
+		button.config(font = ('Arial', 15, 'bold'))
+		button.place(x=130, y=310)
+
+		menu.mainloop()
+		
+	 
+	def create_person(self):
+		global create_person
+
+		def con():
+			set_user_data(entry, entry1)
+			self.game()
+
+		menu.destroy()
+		create_person = Tk()
+		create_person.resizable(0, 0)
+
+		create_person.title('Adventures of the Hero')
+		create_person.geometry('450x450')
+		create_person.config(bg = '#1FA7E1')
+
+		label = Label(create_person, text = 'Input name: ', bg='#1FA7E1', fg='white')
+		label.config(font = ('Arial', 20, 'bold'))
+		label.place(x=130, y=30)
+
+		entry = Entry(create_person, width = 20, )
+		entry.config(font = ('Arial', 15, 'bold'))
+		entry.place(x=130, y=70)
+
+		label = Label(create_person, text = 'Input Age: ', bg='#1FA7E1', fg='white')
+		label.config(font = ('Arial', 20, 'bold'))
+		label.place(x=130, y=110)
+
+		entry1 = Entry(create_person, width = 20)
+		entry1.config(font = ('Arial', 15, 'bold'))
+		entry1.place(x=130, y=150)
+
+		button = Button(create_person, text = 'Create person', width=15, command=con)
+		button.config(font = ('Arial', 15, 'bold'))
+		button.place(x=130, y=190)
+
+		create_person.mainloop()
+
+
+	def inv(self):
+		global inv
+		
+		inv = Tk()
+
+		inv.title('Adventures of the Hero')
+		inv.geometry('450x450')
+		inv.config(bg = '#1FA7E1')
+		inv.resizable(0, 0)
+
+		game.mainloop()
+
+
+def set_user_data(entry1, entry2):
+	global user
+	global age
+	user = entry1.get()
+	age = entry2.get()
+
 
 
 if __name__ == '__main__':
-	menu()
+	game_windows = windows()
+	game_windows.menu()
 
