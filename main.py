@@ -37,9 +37,6 @@ old_villager = hero('Old villager', random.randint(50, 85), 'Старый жит
 young_villager = hero('Young villager', random.randint(10, 18), 'Молодой житель. Еще учится в школе.', 0, 0)
  
 
-p(young_villager.name)
-
-
 
 # h = people(user, age, 'Ваш перссонаж бродит по темным уголкам этого средневекового века. Он ищет не только приключения, но и семь тоинственных душ')
 
