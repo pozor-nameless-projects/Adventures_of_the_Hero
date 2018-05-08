@@ -7,13 +7,18 @@ import os
 user = 'Jana'
 age = 0
 
+
+class item:
+
+	def __init__(self, name, desc, damage, cost):
+		self.name = name
+		self.desc = desc
+		self.damage = damage
+		self.cost = cost
+
+
 class hero:
 
-	name = ''
-	age = 0
-	des = ''
-	dam = 0
-	den = 0
 
 	def __init__(self, name, age, des, dam, den):
 		self.name = name
@@ -28,8 +33,14 @@ elf = hero('Elf', 332, 'Эльфы стреляют своими магичес�
 trader = hero('Trader', 24, 'Торгует всем что есть в это мире.', 1, 0)
 villager = hero('Villager', random.randint(20, 40), 'Простой житель. Ничего не умеет. Ничего не делает.', 0, 0)
 old_villager = hero('Old villager', random.randint(50, 85), 'Старый житель. Живет в избушке на пенсии', 0, 0)
+
 young_villager = hero('Young villager', random.randint(10, 18), 'Молодой житель. Еще учится в школе.', 0, 0)
  
+
+p(young_villager.name)
+
+
+
 # h = people(user, age, 'Ваш перссонаж бродит по темным уголкам этого средневекового века. Он ищет не только приключения, но и семь тоинственных душ')
 
 
