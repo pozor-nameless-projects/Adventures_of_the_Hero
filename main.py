@@ -413,7 +413,7 @@ def game():
 			if v4 == '1':
 				cls()
 				p('-' + villager.name)
-				printkrasivo('Мне нужно найти самоцвет. Он находится у старого купца.') 
+				printkrasivo('Тебе нужно найти самоцвет. Он находится у старого купца.') 
 				printkrasivo('Укради его если сможешь. Вернись сюда на рассвете, и получи вознагрождение!')
 				printkrasivo('Возьми эту палку она тебе пригодится.')
 				p('')
@@ -421,9 +421,45 @@ def game():
 				p('2.Нет, Спасибо!')
 				v8 = choose(max=2)
 				if v8 == '1':
-					pass
+					weapon = items[0]
+					printkrasivo('Удачи тебе.')
 				if v8 == '2':
-					pass
+					printkrasivo('Ну, не хочешь как хочешь. Так тебе подсказать дорогу к шахте?')
+					p()
+					p('1.Да')
+					p('2.Нет, спасибо')
+					v9 = choose(max = 2)
+					if v9 == '1':
+						cls()
+						p('-' + villager.name)
+						printkrasivo('Иди прямо до деревни. Проходи мимо торговой лавки и там увидешь водопад. Под ним и будет его шахта!')
+						p('')
+						p('-' + user)
+						printkrasivo('Спасибо!')
+						time.sleep(4)
+						cls()
+						printkrasivo('- > - > - > - > - > - > - > - > - > - >')
+						cls()
+						p('-' + user)
+						printkrasivo('Зайду я пожалуй в торговую лавку!')
+						time.sleep(3)
+						shop()
+						cls()
+						printkrasivo('- > - > - > - > - > - > - > - > - > - >')
+						cls()
+						p('-' + user)
+						printkrasivo('Вот я и пришел к моей первой душе')
+						time.sleep(5)
+					if v9 == '2':
+						cls()
+						p('-' + villager.name)
+						printkrasivo('Будь аккуратней. В наших краях опасно ходить.')
+						time.sleep(4)
+						cls()
+						printkrasivo('- > - > - > - > - > - > - > - > - > - >')
+						cls()
+						printkrasivo(user + ' заблудился и набрёл на дракона.')
+						printkrasivo(Fore.RED + 'GAME OVER!')
 			if v4 == '2':
 				cls()
 				p('-' + villager.name)
