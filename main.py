@@ -227,10 +227,11 @@ def shop():
 		p(item.desc)
 		p('Урон: ' + str(item.damage) + '    Цена: ' + str(item.cost))
 		p()
-	
+
 	v = choose()
 
 def game():
+	global money
 	# create_person.destroy()
 	# screen_saver_thread.join()
 	stage = 0
