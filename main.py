@@ -9,6 +9,7 @@ import os
 
 user = 'Потохер'
 age = '56'
+money = 30
 
 
 screen_saver_thread = None
@@ -16,7 +17,6 @@ screen_saver_thread = None
 
 def choose(max = 3):
 	c = input('>>>')
-	
 	try:
 		c = int(c)
 	except:
@@ -71,10 +71,13 @@ trader = hero('Торговец', random.randint(40, 100), 'Торгует вс�
 villager = hero('Житель', random.randint(20, 40), 'Простой житель. Ничего не умеет. Ничего не делает.', 0, 0)
 old_villager = hero('Старый житель', random.randint(50, 85), 'Старый житель. Живет в избушке на пенсии', 0, 0)
 young_villager = hero('Молодой житель', random.randint(10, 18), 'Молодой житель. Еще учится в школе.', 0, 0)
+nerut = hero('Нерут', 45, 'Шахтёр коротый лишился глаза сражаясь с эльфом', 3, 1)
 #items
 wooden_stick = item('Палка', 'Палка из дерева. Проще её сжечь чем кого-нибудь ей убить', 1, 15)
 torch = item('Факел', 'Факел для освещения дороги.', 2, 35)
 small_sword = item('Маленький меч', 'Простой меч. Наносит мало урона.', 3, 100)
+
+items = [wooden_stick, torch, small_sword]
 
 
 
@@ -211,6 +214,22 @@ def screen_saver():
 		printkrasivo(i + '\n')
 																				 
 
+def shop():
+	cls()
+	print('Shop')
+	p('-' + trader.name)
+	printkrasivo('Добро пожаловать в торговую лавку. У нас ты можешь найти всё что желаешь.')
+	p()
+	p('У тебя ' + str(money) + ' монет')
+	p()
+	for item in items:
+		p(str(items.index(item) + 1) + '    ' + item.name)
+		p(item.desc)
+		p('Урон: ' + str(item.damage) + '    Цена: ' + str(item.cost))
+		p()
+	
+	v = choose()
+
 def game():
 	# create_person.destroy()
 	# screen_saver_thread.join()
@@ -267,6 +286,8 @@ def game():
 				p('')
 				p('-' + villager.name)
 				printkrasivo('Хорошо я жду!')
+				time.sleep(1)
+				shop()
 
 		if v1 == '2':
 			cls()
@@ -287,6 +308,7 @@ def game():
 				v3 = choose(max = 2)
 				if v3 == '1':
 					cls()
+					money = money - 15
 					printkrasivo('- > - > - > - > - > - > - > - > - > - >')
 					cls()
 					p('-' + user)
@@ -295,6 +317,8 @@ def game():
 					p('')
 					p('-' + villager.name)
 					printkrasivo('Хорошо я жду!')
+					time.sleep(1)
+					shop()
 				if v3 == '2':
 					cls()
 					p('-' + villager.name)
@@ -345,6 +369,7 @@ def game():
 					v6 = choose(max = 2)
 					if v6 == '1':
 						cls()
+						money = money - 15
 						printkrasivo('- > - > - > - > - > - > - > - > - > - >')
 						cls()
 						p('-' + user)
@@ -353,6 +378,8 @@ def game():
 						p('')
 						p('-' + villager.name)
 						printkrasivo('Хорошо я жду!')
+						time.sleep(1)
+						shop()
 					if v6 == '2':
 						cls()
 						p('-' + villager.name)
