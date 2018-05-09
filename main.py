@@ -29,6 +29,11 @@ def choose(max = 3):
 	return choose(max = max)
 
 
+def pwi(s, width = 50):
+	otstup = (width - len(s)) // 2
+	return(otstup * ' ' + s)
+
+
 def cls():
 	os.system('cls')
 
@@ -246,7 +251,6 @@ def shop():
 		printkrasivo('Видно у тебя не достаточно денег.')
 
 
-
 def game():
 	global money
 	# create_person.destroy()
@@ -275,7 +279,7 @@ def game():
 				printkrasivo('Я думаю у тебя ничего не получится. Никто не обладал мощью семи существ!')
 				p('')
 				p('-' + user)
-				printkrasivo('Просто отведи меня к моей первой душе! Гном Нерут прячется в этих краях.')
+				printkrasivo('Просто отведи меня к моей первой душе! Гном Нерут.')
 				p('')
 				p('-' + villager.name)
 				printkrasivo('Хорошо, пошли!')
@@ -290,6 +294,8 @@ def game():
 				p('')
 				p('-' + villager.name)
 				printkrasivo('Хорошо я жду!')
+				time.sleep(4)
+				shop()
 			if v7 == '2':
 				cls()
 				p('-' + villager.name)
@@ -304,7 +310,7 @@ def game():
 				p('')
 				p('-' + villager.name)
 				printkrasivo('Хорошо я жду!')
-				time.sleep(1)
+				time.sleep(4)
 				shop()
 
 		if v1 == '2':
@@ -348,6 +354,10 @@ def game():
 					cls()
 					printkrasivo('- > - > - > - > - > - > - > - > - > - >')
 					cls()
+					p('-' + user)
+					printkrasivo('Зайду я пожалуй в торговую лавку!')
+					time.sleep(3)
+					shop()
 			if v2 == '2':
 				printkrasivo('Иди прямо до деревни. Проходи мимо торговой лавки и там увидешь водопад. Под ним и будет его шахта!')
 				p('')
@@ -357,7 +367,10 @@ def game():
 				cls()
 				printkrasivo('- > - > - > - > - > - > - > - > - > - >')
 				cls()
-
+				p('-' + user)
+				printkrasivo('Зайду я пожалуй в торговую лавку!')
+				time.sleep(3)
+				shop()
 		if v1 == '3':
 			cls()
 			p('-' + villager.name)
@@ -396,7 +409,7 @@ def game():
 						p('')
 						p('-' + villager.name)
 						printkrasivo('Хорошо я жду!')
-						time.sleep(1)
+						time.sleep(4)
 						shop()
 					if v6 == '2':
 						cls()
@@ -405,10 +418,14 @@ def game():
 						p('')
 						p('-' + user)
 						printkrasivo('Спасибо!')
-						time.sleep(5)
+						time.sleep(4)
 						cls()
 						printkrasivo('- > - > - > - > - > - > - > - > - > - >')
 						cls()
+						p('-' + user)
+						printkrasivo('Зайду я пожалуй в торговую лавку!')
+						time.sleep(3)
+						shop()
 				if v5 == '2':
 					cls()
 					p('-' + villager.name)
@@ -420,7 +437,10 @@ def game():
 					cls()
 					printkrasivo('- > - > - > - > - > - > - > - > - > - >')
 					cls()
-
+					p('-' + user)
+					printkrasivo('Зайду я пожалуй в торговую лавку!')
+					time.sleep(3)
+					shop()
 
 
 if __name__ == '__main__':
