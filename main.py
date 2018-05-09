@@ -350,6 +350,17 @@ def game():
 						cls()
 						printkrasivo('- > - > - > - > - > - > - > - > - > - >')
 						cls()
+				if v5 == '2':
+					cls()
+					p('-' + villager.name)
+					printkrasivo('Иди прямо до деревни. Проходи мимо торговой лавки и там увидешь водопад. Под ним и будет его шахта!')
+					p('')
+					p('-' + user)
+					printkrasivo('Спасибо!')
+					time.sleep(5)
+					cls()
+					printkrasivo('- > - > - > - > - > - > - > - > - > - >')
+					cls()
 
 
 
