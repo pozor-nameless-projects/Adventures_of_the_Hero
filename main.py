@@ -1,5 +1,6 @@
 
-from ezprint import p
+from colorama import init, Fore, Back, Style
+from ezprint import *
 from tkinter import *
 import threading
 import random
@@ -8,7 +9,7 @@ import os
 
 
 user = 'Потохер'
-age = '56'
+age = '472'
 money = 30
 weapon = None
 
@@ -27,11 +28,6 @@ def choose(max = 3):
 		return str(c)
 
 	return choose(max = max)
-
-
-def pwi(s, width = 50):
-	otstup = (width - len(s)) // 2
-	return(otstup * ' ' + s)
 
 
 def cls():
@@ -187,6 +183,7 @@ def set_user_data(entry1, entry2):
 
 def screen_saver():
 	strs = []
+	strs.append('')
 	strs.append(' ▄▄▄      ▓█████▄  ██▒   █▓▓█████  ███▄    █ ▄▄▄█████▓ █    ██  ██▀███  ▓█████   ██████ ') 
 	strs.append('▒████▄    ▒██▀ ██▌▓██░   █▒▓█   ▀  ██ ▀█   █ ▓  ██▒ ▓▒ ██  ▓██▒▓██ ▒ ██▒▓█   ▀ ▒██    ▒ ') 
 	strs.append('▒██  ▀█▄  ░██   █▌ ▓██  █▒░▒███   ▓██  ▀█ ██▒▒ ▓██░ ▒░▓██  ▒██░▓██ ░▄█ ▒▒███   ░ ▓██▄   ') 
@@ -217,14 +214,16 @@ def screen_saver():
 	strs.append('          ░  ░  ░   ░  ░    ░  ░  ░   ░  ░   ░         ░ ░  ')
 
 	for i in strs:
-		printkrasivo(i + '\n')
+		pwd(Fore.RED + i + '\n')
 																				 
 
 def shop():
 	global money
 
 	cls()
-	print('Shop')
+	p('==============')
+	p('ТОГРОВАЯ ЛАВКА')
+	p('==============')
 	p('-' + trader.name)
 	printkrasivo('Добро пожаловать в торговую лавку. У нас ты можешь найти всё что желаешь.')
 	p()
@@ -246,17 +245,25 @@ def shop():
 	if money >= items[v].cost:
 		weapon = items[v]
 		money = money - item.cost
-		printkrasivo('Спасибо за покупку. Теперь ты силён')
+		printkrasivo('Спасибо за покупку. Ждем тебе снова!')
+		return
 	else:
 		printkrasivo('Видно у тебя не достаточно денег.')
-
+		return
 
 def game():
 	global money
-	# create_person.destroy()
+	# try:
+	# 	create_person.destroy()
+	# except:
+	# 	pass
 	# screen_saver_thread.join()
+#------------------------------------------------------------------------------------------------------------------------------
 	stage = 0
 	if stage == 0:
+		p('==================')
+		p('ЛЕСНОЕ КОРОЛЕВСТВО')
+		p('==================')
 		p('-' + villager.name)
 		printkrasivo('Здравствуй, ' + user + ', какими судьбами тебя занесло в наши края?')
 		p('')
@@ -312,6 +319,12 @@ def game():
 				printkrasivo('Хорошо я жду!')
 				time.sleep(4)
 				shop()
+				cls()
+				printkrasivo('- > - > - > - > - > - > - > - > - > - >')
+				cls()
+				p('-' + villager.name)
+				printkrasivo('Вот мы подошли к шахте. Она за водопадом, иди туда и там ты найдешь Нерута. Удачи тебе!')
+				time.sleep(5)
 
 		if v1 == '2':
 			cls()
@@ -343,6 +356,12 @@ def game():
 					printkrasivo('Хорошо я жду!')
 					time.sleep(1)
 					shop()
+					cls()
+					printkrasivo('- > - > - > - > - > - > - > - > - > - >')
+					cls()
+					p('-' + villager.name)
+					printkrasivo('Вот мы подошли к шахте. Она за водопадом, иди туда и там ты найдешь Нерута. Удачи тебе!')
+					time.sleep(5)
 				if v3 == '2':
 					cls()
 					p('-' + villager.name)
@@ -358,6 +377,12 @@ def game():
 					printkrasivo('Зайду я пожалуй в торговую лавку!')
 					time.sleep(3)
 					shop()
+					cls()
+					printkrasivo('- > - > - > - > - > - > - > - > - > - >')
+					cls()
+					p('-' + user)
+					printkrasivo('Вот я и пришел к моей первой душе')
+					time.sleep(5)
 			if v2 == '2':
 				printkrasivo('Иди прямо до деревни. Проходи мимо торговой лавки и там увидешь водопад. Под ним и будет его шахта!')
 				p('')
@@ -371,6 +396,12 @@ def game():
 				printkrasivo('Зайду я пожалуй в торговую лавку!')
 				time.sleep(3)
 				shop()
+				cls()
+				printkrasivo('- > - > - > - > - > - > - > - > - > - >')
+				cls()
+				p('-' + user)
+				printkrasivo('Вот я и пришел к моей первой душе')
+				time.sleep(5)
 		if v1 == '3':
 			cls()
 			p('-' + villager.name)
@@ -381,11 +412,22 @@ def game():
 			v4 = choose(max = 2)
 			if v4 == '1':
 				cls()
-				pass
+				p('-' + villager.name)
+				printkrasivo('Мне нужно найти самоцвет. Он находится у старого купца.') 
+				printkrasivo('Укради его если сможешь. Вернись сюда на рассвете, и получи вознагрождение!')
+				printkrasivo('Возьми эту палку она тебе пригодится.')
+				p('')
+				p('1.Хорошо.')
+				p('2.Нет, Спасибо!')
+				v8 = choose(max=2)
+				if v8 == '1':
+					pass
+				if v8 == '2':
+					pass
 			if v4 == '2':
 				cls()
 				p('-' + villager.name)
-				printkrasivo('Обычно он  заседает в своей шахте.')
+				printkrasivo('Обычно он заседает в своей шахте.')
 				p('')
 				p('1.Мог бы ты меня провести до шахты?')
 				p('2.Подскажи пожалуйста мне дорогу.')
@@ -411,6 +453,12 @@ def game():
 						printkrasivo('Хорошо я жду!')
 						time.sleep(4)
 						shop()
+						cls()
+						printkrasivo('- > - > - > - > - > - > - > - > - > - >')
+						cls()
+						p('-' + villager.name)
+						printkrasivo('Вот мы подошли к шахте. Она за водопадом, иди туда и там ты найдешь Нерута. Удачи тебе!')
+						time.sleep(5)
 					if v6 == '2':
 						cls()
 						p('-' + villager.name)
@@ -426,6 +474,12 @@ def game():
 						printkrasivo('Зайду я пожалуй в торговую лавку!')
 						time.sleep(3)
 						shop()
+						cls()
+						printkrasivo('- > - > - > - > - > - > - > - > - > - >')
+						cls()
+						p('-' + user)
+						printkrasivo('Вот я и пришел к моей первой душе')
+						time.sleep(5)
 				if v5 == '2':
 					cls()
 					p('-' + villager.name)
@@ -441,10 +495,18 @@ def game():
 					printkrasivo('Зайду я пожалуй в торговую лавку!')
 					time.sleep(3)
 					shop()
+					cls()
+					printkrasivo('- > - > - > - > - > - > - > - > - > - >')
+					cls()
+					p('-' + user)
+					printkrasivo('Вот я и пришел к моей первой душе')
+					time.sleep(5)
+#------------------------------------------------------------------------------------------------------------------------------
 
 
 if __name__ == '__main__':
 	cls()
+	# init(autoreset=True)
 	# screen_saver_thread = threading.Thread(target = screen_saver)
 	# screen_saver_thread.start()
 	# menu()
