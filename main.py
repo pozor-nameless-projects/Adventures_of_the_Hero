@@ -10,6 +10,7 @@ import os
 user = 'Потохер'
 age = '56'
 money = 30
+weapon = None
 
 
 screen_saver_thread = None
@@ -215,6 +216,8 @@ def screen_saver():
 																				 
 
 def shop():
+	global money
+
 	cls()
 	print('Shop')
 	p('-' + trader.name)
@@ -228,7 +231,21 @@ def shop():
 		p('Урон: ' + str(item.damage) + '    Цена: ' + str(item.cost))
 		p()
 
-	v = choose()
+	p('4    Exit')
+
+	v = int(choose(max = 4)) - 1
+
+	if v == 3:
+		return
+
+	if money >= items[v].cost:
+		weapon = items[v]
+		money = money - item.cost
+		printkrasivo('Спасибо за покупку. Теперь ты силён')
+	else:
+		printkrasivo('Видно у тебя не достаточно денег.')
+
+
 
 def game():
 	global money
