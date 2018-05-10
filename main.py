@@ -220,6 +220,17 @@ def screen_saver():
 def shop():
 	global money
 
+	def show_shop():
+		cls()
+		p('==============')
+		p('ТОГРОВАЯ ЛАВКА')
+		p('==============')
+		p('-' + trader.name)
+		p('Добро пожаловать в торговую лавку. У нас ты можешь найти всё что желаешь.')
+		p()
+		p('У тебя ' + str(money) + ' монет')
+		p()
+
 	cls()
 	p('==============')
 	p('ТОГРОВАЯ ЛАВКА')
@@ -229,27 +240,30 @@ def shop():
 	p()
 	p('У тебя ' + str(money) + ' монет')
 	p()
-	for item in items:
-		p(str(items.index(item) + 1) + '    ' + item.name)
-		p(item.desc)
-		p('Урон: ' + str(item.damage) + '    Цена: ' + str(item.cost))
-		p()
+	while True:
+		for item in items:
+			p(str(items.index(item) + 1) + '    ' + item.name)
+			p(item.desc)
+			p('Урон: ' + str(item.damage) + '    Цена: ' + str(item.cost))
+			p()
 
-	p('4    Exit')
+		p('4    Exit')
 
-	v = int(choose(max = 4)) - 1
+		v = int(choose(max = 4)) - 1
 
-	if v == 3:
-		return
+		if v == 3:
+			break
 
-	if money >= items[v].cost:
-		weapon = items[v]
-		money = money - item.cost
-		printkrasivo('Спасибо за покупку. Ждем тебе снова!')
-		return
-	else:
-		printkrasivo('Видно у тебя не достаточно денег.')
-		return
+		if money >= items[v].cost:
+			weapon = items[v]
+			money = money - item.cost
+			printkrasivo('Спасибо за покупку. Ждем тебе снова!')
+			break
+		else:
+			printkrasivo('Видно у тебя не достаточно денег. Выбери что-то другое или подзаработай монет')
+			input()
+			show_shop()
+			
 
 def game():
 	global money
