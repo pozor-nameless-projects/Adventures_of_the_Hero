@@ -248,11 +248,11 @@ def shop():
 			p('Урон: ' + str(item.damage) + '    Цена: ' + str(item.cost))
 			p()
 
-		p('4    Exit')
+		p(str(len(items) + 1) + '    Exit')
 
-		v = int(choose(max = 4)) - 1
+		v = int(choose(max = len(items) + 1)) - 1
 
-		if v == 3:
+		if v == len(items):
 			break
 
 		if money >= items[v].cost:
